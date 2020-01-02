@@ -21,5 +21,4 @@ collections:
     fields:
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Data de publicação", name: "date", widget: "datetime" }
-      - { label: "Imagem de Capa", name: "featuredimage", widget: image }
       - { label: "Texto", name: "body", widget: "markdown" }

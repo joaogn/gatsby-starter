@@ -6,6 +6,28 @@ module.exports = [
   `gatsby-transformer-sharp`,
   `gatsby-plugin-sharp`,
   {
+    // keep as first gatsby-source-filesystem plugin for gatsby image support
+    resolve: "gatsby-source-filesystem",
+    options: {
+      path: path.resolve(__dirname, "..", "static", "img"),
+      name: "uploads",
+    },
+  },
+  {
+    resolve: "gatsby-source-filesystem",
+    options: {
+      path: path.resolve(__dirname, "..", "src", "pages"),
+      name: "pages",
+    },
+  },
+  {
+    resolve: "gatsby-source-filesystem",
+    options: {
+      path: path.resolve(__dirname, "..", "src", "assets"),
+      name: "images",
+    },
+  },
+  {
     resolve: "gatsby-plugin-netlify-cms",
     options: {
       modulePath: path.resolve(__dirname, "..", "src", "cms", "cms.js"),
@@ -62,4 +84,5 @@ module.exports = [
     },
   },
   `gatsby-plugin-offline`,
+  "gatsby-plugin-netlify",
 ]
