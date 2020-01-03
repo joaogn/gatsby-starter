@@ -19,6 +19,30 @@ collections:
     create: true
     slug: "{{day}}-{{month}}-{{year}}-{{slug}}"
     fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "BlogPost",
+        }
       - { label: "Título", name: "title", widget: "string" }
       - { label: "Data de publicação", name: "date", widget: "datetime" }
       - { label: "Texto", name: "body", widget: "markdown" }
+  - name: "pages"
+    label: "Páginas"
+    files:
+      - file: "src/pages/index.md"
+        label: "Home"
+        name: "index"
+        fields:
+          - {
+              label: "Template Key",
+              name: "templateKey",
+              widget: "hidden",
+              default: "Home",
+            }
+          - { label: Título SEO, name: titleSEO, widget: string }
+          - { label: Descrição SEO, name: descriptionSEO, widget: string }
+          - { label: Background, name: image, widget: image }
+          - { label: Título, name: title, widget: string }
+          - { label: Subtítulo, name: subtitle, widget: string }
