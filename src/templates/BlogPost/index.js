@@ -12,7 +12,6 @@ export default function BlogPost({ data, isPreview }) {
   return (
     <Container>
       <h1>{post.frontmatter.title}</h1>
-      <h2>Oxe</h2>
       {isPreview ? (
         post.html
       ) : (
