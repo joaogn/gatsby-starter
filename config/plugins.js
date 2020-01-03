@@ -3,8 +3,6 @@ const path = require("path")
 module.exports = [
   `gatsby-plugin-react-helmet`,
   `gatsby-plugin-sitemap`,
-  `gatsby-transformer-sharp`,
-  `gatsby-plugin-sharp`,
   {
     resolve: "gatsby-transformer-remark",
     options: {
@@ -111,6 +109,8 @@ module.exports = [
       ignore: [`**/styles.js`],
     },
   },
+  `gatsby-plugin-sharp`,
+  `gatsby-transformer-sharp`,
   `gatsby-plugin-offline`,
   "gatsby-plugin-netlify",
 ]

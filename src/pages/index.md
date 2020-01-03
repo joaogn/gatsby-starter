@@ -1,9 +1,8 @@
 ---
 templateKey: Home
-titleSEO: Home
-descriptionSEO: Joao Graca
-image: /img/fitcms.png
-title: Solução de ponta a ponta
-subtitle: Sua solução do 0 ao 100%
+titleSEO: Starter Gatsby
+descriptionSEO: Author João Graça Neto
+image: /img/icon.png
+title: Starter Gatsby
+subtitle: Gatsby Blog With NetlifyCMS and PWA
 ---
-

@@ -5,13 +5,13 @@ import BlogPostPreview from "./preview-templates/BlogPostPreview"
 import HomePreview from "./preview-templates/HomePreview"
 import withStyledComponentsRendered from "../helpers/styleInjector"
 
-CMS.registerPreviewStyle("./exemple.css")
+CMS.registerPreviewStyle("./PreviewStyle.css")
 
 CMS.registerPreviewTemplate(
   "blog",
   withStyledComponentsRendered(BlogPostPreview)
 )
 
-CMS.registerPreviewTemplate("home", withStyledComponentsRendered(HomePreview))
+CMS.registerPreviewTemplate("index", withStyledComponentsRendered(HomePreview))
 
 CMS.registerLocale("pt", pt)

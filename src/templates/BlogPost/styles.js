@@ -1,18 +1,15 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-  background: #712345;
+  background: #ddd;
   height: 100vh;
   h1 {
-    color: #ccc;
+    color: #222;
     font-size: 50px;
   }
   div {
-    h2 {
-      color: red;
-    }
-    p {
-      color: #fff;
+    h3 {
+      color: #666;
     }
   }
 `
