@@ -18,6 +18,13 @@ exports.createPages = ({ actions, graphql }) => {
             frontmatter {
               templateKey
               title
+              image {
+                childImageSharp {
+                  fluid(maxWidth: 100, quality: 100) {
+                    src
+                  }
+                }
+              }
             }
           }
         }
@@ -37,7 +44,7 @@ exports.createPages = ({ actions, graphql }) => {
 
     const saveFile = `export const posts = ${JSON.stringify(posts)}`
 
-    fs.writeFile("src/components/PostList/posts.js", saveFile, "utf8", function(
+    fs.writeFile("src/templates/Home/posts.js", saveFile, "utf8", function(
       err
     ) {
       if (err) {

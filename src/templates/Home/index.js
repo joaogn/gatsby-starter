@@ -1,7 +1,6 @@
 import React from "react"
 import { Container } from "./styles"
-
-import PostsList from "../../components/PostList"
+import { posts } from "./posts"
 
 export default function HomePage({ data, isPreview }) {
   const homeData = data.markdownRemark
@@ -16,7 +15,19 @@ export default function HomePage({ data, isPreview }) {
       <div className={"banner"}>
         <h1>{homeData.frontmatter.title}</h1>
         <h2>{homeData.frontmatter.subtitle}</h2>
-        <PostsList />
+        <div className={"posts"}>
+          <h2>Posts</h2>
+          <div className={"postsContent"}>
+            {posts.map(({ node }) => {
+              return (
+                <a href={node.fields.slug}>
+                  <img src={node.frontmatter.image.childImageSharp.fluid.src} />
+                  <p>{node.frontmatter.title}</p>
+                </a>
+              )
+            })}
+          </div>
+        </div>
       </div>
     </Container>
   )
