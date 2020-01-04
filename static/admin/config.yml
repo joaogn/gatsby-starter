@@ -26,6 +26,7 @@ collections:
           default: "BlogPost",
         }
       - { label: "Título", name: "title", widget: "string" }
+      - { label: "Imagem do Post", name: "image", widget: image }
       - { label: "Data de publicação", name: "date", widget: "datetime" }
       - { label: "Texto", name: "body", widget: "markdown" }
       - { label: "Título SEO", name: "titleSEO", widget: "string" }
