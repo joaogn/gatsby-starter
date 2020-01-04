@@ -1,4 +1,5 @@
 import React from "react"
+import { Helmet } from "react-helmet"
 import { Container } from "./styles"
 import { posts } from "./posts"
 
@@ -12,6 +13,13 @@ export default function HomePage({ data, isPreview }) {
           : homeData.frontmatter.image
       }
     >
+      <Helmet>
+        <title>{homeData.frontmatter.titleSEO}</title>
+        <meta
+          name="description"
+          content={homeData.frontmatter.descriptionSEO}
+        />
+      </Helmet>
       <div className={"banner"}>
         <h1>{homeData.frontmatter.title}</h1>
         <h2>{homeData.frontmatter.subtitle}</h2>
@@ -43,7 +51,7 @@ export const pageQuery = graphql`
         subtitle
         image {
           childImageSharp {
-            fluid(maxWidth: 1700, quality: 100) {
+            fluid(maxWidth: 500, quality: 100) {
               src
             }
           }

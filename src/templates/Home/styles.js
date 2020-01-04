@@ -55,12 +55,17 @@ export const Container = styled.div`
           box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
           width: 25%;
           height: 200px;
-          padding: 20px;
           display: flex;
           flex-direction: column;
-          align-items: center;
-          justify-content: center;
+          align-items: flex-start;
+          justify-content: flex-start;
+          img {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            width: 100%;
+          }
           p {
+            align-self: center;
             margin-top: 5px;
             color: #000;
             font-size: 16px;
@@ -88,7 +93,7 @@ export const Container = styled.div`
       .posts {
         .postsContent {
           a {
-            width: 80%;
+            width: 90%;
           }
         }
       }
