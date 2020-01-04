@@ -2,7 +2,7 @@ import React from "react"
 //import { graphql } from "gatsby"
 import { Container } from "./styles"
 
-import PostsList from "../../components/PostList"
+//import PostsList from "../../components/PostList"
 //import { useStaticQuery, graphql } from "gatsby"
 
 export const HomeTemplate = ({ data, isPreview }) => {
@@ -18,7 +18,6 @@ export const HomeTemplate = ({ data, isPreview }) => {
       <div className={"banner"}>
         <h1>{homeData.frontmatter.title}</h1>
         <h2>{homeData.frontmatter.subtitle}</h2>
-        <PostsList />
       </div>
     </Container>
   )
