@@ -2,12 +2,12 @@ import React from "react"
 import Home from "../../templates/Home"
 import PropTypes from "prop-types"
 
-function HomePreview({ data, entry, getAsset }) {
+function HomePreview({ entry, getAsset }) {
   const homeData = entry.getIn(["data"]).toJS()
   return (
     <Home
       data={{
-        homeData: {
+        markdownRemark: {
           frontmatter: {
             titleSEO: homeData.titleSEO,
             descriptionSEO: homeData.descriptionSEO,

@@ -19,7 +19,7 @@ class BlogRoll extends React.Component {
 }
 
 function PostList({ data }) {
-  const { postsData } = data
+  const postsData = data.allMarkdownRemark
   return (
     <Container>
       <h3>Posts :</h3>
@@ -42,7 +42,7 @@ export default () => (
   <StaticQuery
     query={graphql`
       query PostList {
-        postsData: allMarkdownRemark(
+        allMarkdownRemark(
           sort: { order: DESC, fields: [frontmatter___date] }
           filter: { frontmatter: { templateKey: { eq: "BlogPost" } } }
         ) {
@@ -59,6 +59,6 @@ export default () => (
         }
       }
     `}
-    render={data => <BlogRoll data={data} />}
+    render={data => <PostList data={data} />}
   />
 )

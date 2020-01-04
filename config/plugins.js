@@ -1,8 +1,31 @@
 const path = require("path")
 
 module.exports = [
-  `gatsby-plugin-react-helmet`,
-  `gatsby-plugin-sitemap`,
+  "gatsby-plugin-react-helmet",
+  {
+    // keep as first gatsby-source-filesystem plugin for gatsby image support
+    resolve: "gatsby-source-filesystem",
+    options: {
+      path: path.resolve(__dirname, "..", "static", "img"),
+      name: "uploads",
+    },
+  },
+  {
+    resolve: "gatsby-source-filesystem",
+    options: {
+      path: path.resolve(__dirname, "..", "src", "pages"),
+      name: "pages",
+    },
+  },
+  {
+    resolve: "gatsby-source-filesystem",
+    options: {
+      path: path.resolve(__dirname, "..", "src", "assets"),
+      name: "images",
+    },
+  },
+  "gatsby-plugin-sharp",
+  "gatsby-transformer-sharp",
   {
     resolve: "gatsby-transformer-remark",
     options: {
@@ -29,34 +52,6 @@ module.exports = [
           },
         },
       ],
-    },
-  },
-  {
-    // keep as first gatsby-source-filesystem plugin for gatsby image support
-    resolve: "gatsby-source-filesystem",
-    options: {
-      path: path.resolve(__dirname, "..", "static", "img"),
-      name: "uploads",
-    },
-  },
-  {
-    resolve: "gatsby-source-filesystem",
-    options: {
-      path: path.resolve(__dirname, "..", "src", "pages"),
-      name: "pages",
-    },
-  },
-  {
-    resolve: "gatsby-source-filesystem",
-    options: {
-      path: path.resolve(__dirname, "..", "src", "assets"),
-      name: "images",
-    },
-  },
-  {
-    resolve: "gatsby-plugin-netlify-cms",
-    options: {
-      modulePath: path.resolve(__dirname, "..", "src", "cms", "cms.js"),
     },
   },
   {
@@ -109,8 +104,12 @@ module.exports = [
       ignore: [`**/styles.js`],
     },
   },
-  `gatsby-plugin-sharp`,
-  `gatsby-transformer-sharp`,
   `gatsby-plugin-offline`,
-  "gatsby-plugin-netlify",
+  {
+    resolve: "gatsby-plugin-netlify-cms",
+    options: {
+      modulePath: path.resolve(__dirname, "..", "src", "cms", "cms.js"),
+    },
+  },
+  "gatsby-plugin-netlify", // make sure to keep it last in the array
 ]
