@@ -1,64 +1,14 @@
 import React from "react"
-import PropTypes from "prop-types"
 import { Container } from "./styles"
-import { graphql, StaticQuery } from "gatsby"
+import { posts } from "./posts"
 
-class BlogRoll extends React.Component {
-  render() {
-    const { data } = this.props
-    const { postsData } = data
-    return (
-      <Container>
-        <h3>Posts :</h3>
-        {postsData.edges.map(({ node }) => {
-          return <a href={node.fields.slug}>{node.frontmatter.title}</a>
-        })}
-      </Container>
-    )
-  }
-}
-
-function PostList({ data }) {
-  const postsData = data.allMarkdownRemark
+export default function PostList() {
   return (
     <Container>
       <h3>Posts :</h3>
-      {postsData.edges.map(({ node }) => {
+      {posts.map(({ node }) => {
         return <a href={node.fields.slug}>{node.frontmatter.title}</a>
       })}
     </Container>
   )
 }
-
-PostList.propTypes = {
-  data: PropTypes.shape({
-    postsData: PropTypes.shape({
-      edges: PropTypes.array,
-    }),
-  }),
-}
-
-export default () => (
-  <StaticQuery
-    query={graphql`
-      query PostList {
-        allMarkdownRemark(
-          sort: { order: DESC, fields: [frontmatter___date] }
-          filter: { frontmatter: { templateKey: { eq: "BlogPost" } } }
-        ) {
-          edges {
-            node {
-              fields {
-                slug
-              }
-              frontmatter {
-                title
-              }
-            }
-          }
-        }
-      }
-    `}
-    render={data => <PostList data={data} />}
-  />
-)

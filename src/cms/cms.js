@@ -14,5 +14,3 @@ CMS.registerPreviewTemplate(
 )
 
 CMS.registerLocale("pt", pt)
-
-CMS.init()

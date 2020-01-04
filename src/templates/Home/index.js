@@ -1,11 +1,9 @@
 import React from "react"
-//import { graphql } from "gatsby"
 import { Container } from "./styles"
 
-//import PostsList from "../../components/PostList"
-//import { useStaticQuery, graphql } from "gatsby"
+import PostsList from "../../components/PostList"
 
-export const HomeTemplate = ({ data, isPreview }) => {
+export default function HomePage({ data, isPreview }) {
   const homeData = data.markdownRemark
   return (
     <Container
@@ -18,16 +16,11 @@ export const HomeTemplate = ({ data, isPreview }) => {
       <div className={"banner"}>
         <h1>{homeData.frontmatter.title}</h1>
         <h2>{homeData.frontmatter.subtitle}</h2>
+        <PostsList />
       </div>
     </Container>
   )
 }
-
-const HomePage = ({ data }) => {
-  return <HomeTemplate data={data} />
-}
-
-export default HomePage
 
 export const pageQuery = graphql`
   query HomeQuery {
@@ -42,21 +35,6 @@ export const pageQuery = graphql`
             fluid(maxWidth: 1700, quality: 100) {
               src
             }
-          }
-        }
-      }
-    }
-    allMarkdownRemark(
-      sort: { order: DESC, fields: [frontmatter___date] }
-      filter: { frontmatter: { templateKey: { eq: "BlogPost" } } }
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            title
           }
         }
       }

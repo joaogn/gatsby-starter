@@ -1,6 +1,7 @@
 const path = require("path")
 const { createFilePath } = require("gatsby-source-filesystem")
 const { fmImagesToRelative } = require("gatsby-remark-relative-images")
+const fs = require("fs")
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
@@ -16,6 +17,7 @@ exports.createPages = ({ actions, graphql }) => {
             }
             frontmatter {
               templateKey
+              title
             }
           }
         }
@@ -27,9 +29,26 @@ exports.createPages = ({ actions, graphql }) => {
       return Promise.reject(result.errors)
     }
 
-    const posts = result.data.allMarkdownRemark.edges
+    const pages = result.data.allMarkdownRemark.edges
 
-    posts.forEach(edge => {
+    const posts = pages.filter(({ node }) =>
+      node.frontmatter.templateKey === "BlogPost" ? true : false
+    )
+
+    const saveFile = `export const posts = ${JSON.stringify(posts)}`
+
+    fs.writeFile("src/components/PostList/posts.js", saveFile, "utf8", function(
+      err
+    ) {
+      if (err) {
+        console.log("An error occured while writing JSON Object to File.")
+        return console.log(err)
+      }
+
+      console.log("JSON file has been saved.")
+    })
+
+    pages.forEach(edge => {
       const id = edge.node.id
       createPage({
         path: edge.node.fields.slug,
