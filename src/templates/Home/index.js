@@ -1,10 +1,11 @@
 import React from "react"
-import { graphql } from "gatsby"
+//import { graphql } from "gatsby"
 import { Container } from "./styles"
 
 import PostsList from "../../components/PostList"
+//import { useStaticQuery, graphql } from "gatsby"
 
-export default function Home({ data, isPreview }) {
+export function HomeTemplate({ data, isPreview }) {
   const { homeData } = data
   return (
     <Container
@@ -17,11 +18,17 @@ export default function Home({ data, isPreview }) {
       <div className={"banner"}>
         <h1>{homeData.frontmatter.title}</h1>
         <h2>{homeData.frontmatter.subtitle}</h2>
-        <PostsList></PostsList>
+        <PostsList />
       </div>
     </Container>
   )
 }
+
+const HomePage = ({ data }) => {
+  return <HomeTemplate data={data} />
+}
+
+export default HomePage
 
 export const pageQuery = graphql`
   query HomeQuery {
