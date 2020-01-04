@@ -2,7 +2,7 @@ import React from "react"
 import BlogPost from "../../templates/BlogPost"
 import PropTypes from "prop-types"
 
-const BlogPostPreview = ({ entry, widgetFor }) => {
+function BlogPostPreview({ entry, widgetFor }) {
   return (
     <section>
       <BlogPost

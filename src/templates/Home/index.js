@@ -1,32 +1,31 @@
 import React from "react"
-
+import { graphql } from "gatsby"
 import { Container } from "./styles"
+
+import PostsList from "../../components/PostList"
+
 export default function Home({ data, isPreview }) {
-  let post
-  if (isPreview) {
-    post = data.post
-  } else {
-    post = data.markdownRemark
-  }
+  const { homeData } = data
   return (
     <Container
       banner={
-        post.frontmatter.image.childImageSharp
-          ? post.frontmatter.image.childImageSharp.fluid.src
-          : post.frontmatter.image
+        homeData.frontmatter.image.childImageSharp
+          ? homeData.frontmatter.image.childImageSharp.fluid.src
+          : homeData.frontmatter.image
       }
     >
-      <div>
-        <h1>{post.frontmatter.title}</h1>
-        <h2>{post.frontmatter.subtitle}</h2>
+      <div className={"banner"}>
+        <h1>{homeData.frontmatter.title}</h1>
+        <h2>{homeData.frontmatter.subtitle}</h2>
+        <PostsList></PostsList>
       </div>
     </Container>
   )
 }
 
 export const pageQuery = graphql`
-  query HomePage {
-    markdownRemark(frontmatter: { templateKey: { eq: "Home" } }) {
+  query HomeQuery {
+    homeData: markdownRemark(frontmatter: { templateKey: { eq: "Home" } }) {
       frontmatter {
         titleSEO
         descriptionSEO
@@ -37,6 +36,21 @@ export const pageQuery = graphql`
             fluid(maxWidth: 1700, quality: 100) {
               src
             }
+          }
+        }
+      }
+    }
+    postsData: allMarkdownRemark(
+      sort: { order: DESC, fields: [frontmatter___date] }
+      filter: { frontmatter: { templateKey: { eq: "BlogPost" } } }
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            title
           }
         }
       }

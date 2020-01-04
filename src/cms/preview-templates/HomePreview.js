@@ -2,25 +2,22 @@ import React from "react"
 import Home from "../../templates/Home"
 import PropTypes from "prop-types"
 
-const HomePreview = ({ entry, widgetFor }) => {
-  const data = entry.getIn(["data"]).toJS()
+function HomePreview({ data, entry, getAsset }) {
+  const homeData = entry.getIn(["data"]).toJS()
   return (
-    <section>
-      <Home
-        data={{
-          post: {
-            frontmatter: {
-              titleSEO: data.titleSEO,
-              descriptionSEO: data.descriptionSEO,
-              image: data.image,
-              title: data.title,
-              subtitle: data.subtitle,
-            },
+    <Home
+      data={{
+        homeData: {
+          frontmatter: {
+            titleSEO: homeData.titleSEO,
+            descriptionSEO: homeData.descriptionSEO,
+            image: homeData.image,
+            title: homeData.title,
+            subtitle: homeData.subtitle,
           },
-        }}
-        isPreview
-      />
-    </section>
+        },
+      }}
+    />
   )
 }
 
