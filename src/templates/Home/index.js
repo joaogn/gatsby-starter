@@ -29,7 +29,10 @@ export default function HomePage({ data, isPreview }) {
             {posts.map(({ node }) => {
               return (
                 <a href={node.fields.slug}>
-                  <img src={node.frontmatter.image.childImageSharp.fluid.src} />
+                  <img
+                    src={node.frontmatter.image.childImageSharp.fluid.src}
+                    alt={node.frontmatter.title}
+                  />
                   <p>{node.frontmatter.title}</p>
                 </a>
               )

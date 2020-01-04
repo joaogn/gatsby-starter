@@ -16,7 +16,10 @@ export default function BlogPost({ data, isPreview }) {
         <meta name="description" content={post.frontmatter.descriptionSEO} />
       </Helmet>
       <h1>{post.frontmatter.title}</h1>
-      <img src={post.frontmatter.image.childImageSharp.fluid.src} />
+      <img
+        src={post.frontmatter.image.childImageSharp.fluid.src}
+        alt={post.frontmatter.title}
+      />
       {isPreview ? (
         post.html
       ) : (
