@@ -1,10 +1,12 @@
-import React from "react"
-import { Helmet } from "react-helmet"
-import { Container, ImgContainer } from "./styles"
-import { posts } from "./posts"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
+import { Helmet } from 'react-helmet';
+import { Container, ImgContainer } from './styles';
+import posts from './posts';
 
-export default function HomePage({ data, isPreview }) {
-  const homeData = data.markdownRemark
+export default function HomePage({ data }) {
+  const homeData = data.markdownRemark;
   return (
     <Container
       banner={
@@ -20,28 +22,26 @@ export default function HomePage({ data, isPreview }) {
           content={homeData.frontmatter.descriptionSEO}
         />
       </Helmet>
-      <div className={"banner"}>
+      <div className="banner">
         <h1>{homeData.frontmatter.title}</h1>
         <h2>{homeData.frontmatter.subtitle}</h2>
-        <div className={"posts"}>
+        <div className="posts">
           <h2>Posts</h2>
-          <div className={"postsContent"}>
-            {posts.map(({ node }) => {
-              return (
-                <a href={node.fields.slug}>
-                  <ImgContainer
-                    fluid={node.frontmatter.image.childImageSharp.fluid}
-                    alt={node.frontmatter.title}
-                  />
-                  <p>{node.frontmatter.title}</p>
-                </a>
-              )
-            })}
+          <div className="postsContent">
+            {posts.map(({ node }) => (
+              <a href={node.fields.slug}>
+                <ImgContainer
+                  fluid={node.frontmatter.image.childImageSharp.fluid}
+                  alt={node.frontmatter.title}
+                />
+                <p>{node.frontmatter.title}</p>
+              </a>
+            ))}
           </div>
         </div>
       </div>
     </Container>
-  )
+  );
 }
 
 export const pageQuery = graphql`
@@ -62,4 +62,18 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
+
+HomePage.propTypes = {
+  data: PropTypes.shape({
+    markdownRemark: PropTypes.shape({
+      frontmatter: PropTypes.shape({
+        titleSEO: PropTypes.string,
+        descriptionSEO: PropTypes.string,
+        title: PropTypes.string,
+        subtitle: PropTypes.string,
+        image: PropTypes.object,
+      }),
+    }),
+  }).isRequired,
+};

@@ -1,11 +1,11 @@
-import styled from "styled-components"
-import Img from "gatsby-image"
+import styled from 'styled-components';
+import Img from 'gatsby-image';
 
 export const ImgContainer = styled(Img)`
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   width: 100%;
-`
+`;
 
 export const Container = styled.div`
   height: 100vh;
@@ -101,4 +101,4 @@ export const Container = styled.div`
       }
     }
   }
-`
+`;

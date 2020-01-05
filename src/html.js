@@ -1,9 +1,16 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from 'react';
+import PropTypes from 'prop-types';
 
-export default function HTML(props) {
+export default function HTML({
+  htmlAttributes,
+  headComponents,
+  bodyAttributes,
+  preBodyComponents,
+  body,
+  postBodyComponents,
+}) {
   return (
-    <html {...props.htmlAttributes} lang={"en"}>
+    <html {...htmlAttributes} lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
@@ -11,27 +18,27 @@ export default function HTML(props) {
           name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
-        {props.headComponents}
+        {headComponents}
       </head>
-      <body {...props.bodyAttributes}>
+      <body {...bodyAttributes}>
         <noscript>Use Javascript</noscript>
-        {props.preBodyComponents}
+        {preBodyComponents}
         <div
-          key={`body`}
+          key="body"
           id="___gatsby"
-          dangerouslySetInnerHTML={{ __html: props.body }}
+          dangerouslySetInnerHTML={{ __html: body }}
         />
-        {props.postBodyComponents}
+        {postBodyComponents}
       </body>
     </html>
-  )
+  );
 }
 
 HTML.propTypes = {
-  htmlAttributes: PropTypes.object,
-  headComponents: PropTypes.array,
-  bodyAttributes: PropTypes.object,
-  preBodyComponents: PropTypes.array,
-  body: PropTypes.string,
-  postBodyComponents: PropTypes.array,
-}
+  htmlAttributes: PropTypes.object.isRequired,
+  headComponents: PropTypes.array.isRequired,
+  bodyAttributes: PropTypes.object.isRequired,
+  preBodyComponents: PropTypes.array.isRequired,
+  body: PropTypes.string.isRequired,
+  postBodyComponents: PropTypes.array.isRequired,
+};

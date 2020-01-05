@@ -1,10 +1,10 @@
-const path = require("path")
-const { createFilePath } = require("gatsby-source-filesystem")
-const { fmImagesToRelative } = require("gatsby-remark-relative-images")
-const fs = require("fs")
+const path = require('path');
+const { createFilePath } = require('gatsby-source-filesystem');
+const { fmImagesToRelative } = require('gatsby-remark-relative-images');
+const fs = require('fs');
 
 exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
   return graphql(`
     {
@@ -43,54 +43,44 @@ exports.createPages = ({ actions, graphql }) => {
     }
   `).then(result => {
     if (result.errors) {
-      result.errors.forEach(e => console.error(e.toString()))
-      return Promise.reject(result.errors)
+      return Promise.reject(result.errors);
     }
 
-    const pages = result.data.allMarkdownRemark.edges
+    const pages = result.data.allMarkdownRemark.edges;
 
-    const posts = pages.filter(({ node }) =>
-      node.frontmatter.templateKey === "BlogPost" ? true : false
-    )
+    const posts = pages.filter(
+      ({ node }) => node.frontmatter.templateKey === 'BlogPost',
+    );
 
-    const saveFile = `export const posts = ${JSON.stringify(posts)}`
+    const saveFile = `export default ${JSON.stringify(posts)}`;
 
-    fs.writeFile("src/templates/Home/posts.js", saveFile, "utf8", function(
-      err
-    ) {
-      if (err) {
-        console.log("An error occured while writing JSON Object to File.")
-        return console.log(err)
-      }
-
-      console.log("JSON file has been saved.")
-    })
+    fs.writeFile('src/templates/Home/posts.js', saveFile, 'utf8', () => {});
 
     pages.forEach(edge => {
-      const id = edge.node.id
+      const { id } = edge.node;
       createPage({
         path: edge.node.fields.slug,
         component: path.resolve(
-          `src/templates/${String(edge.node.frontmatter.templateKey)}/index.js`
+          `src/templates/${String(edge.node.frontmatter.templateKey)}/index.js`,
         ),
-        // additional data can be passed via context
         context: {
           id,
         },
-      })
-    })
-  })
-}
+      });
+    });
+    return Promise.resolve();
+  });
+};
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-  fmImagesToRelative(node) // convert image paths for gatsby images
+  const { createNodeField } = actions;
+  fmImagesToRelative(node); // convert image paths for gatsby images
 
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
+  if (node.internal.type === 'MarkdownRemark') {
+    const value = createFilePath({ node, getNode });
     createNodeField({
-      name: `slug`,
+      name: 'slug',
       node,
       value,
-    })
+    });
   }
-}
+};

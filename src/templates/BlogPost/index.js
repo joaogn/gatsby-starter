@@ -1,14 +1,12 @@
-import React from "react"
-import { Helmet } from "react-helmet"
-import { Container, ImgContainer } from "./styles"
+import React from 'react';
+import PropTypes from 'prop-types';
+import { graphql } from 'gatsby';
+import { Helmet } from 'react-helmet';
+import { Container, ImgContainer } from './styles';
 
-export default function BlogPost({ data, isPreview }) {
-  let post
-  if (isPreview) {
-    post = data.post
-  } else {
-    post = data.markdownRemark
-  }
+export default function BlogPost({ data, isPreview = false }) {
+  const post = data.markdownRemark;
+
   return (
     <Container>
       <Helmet>
@@ -16,17 +14,28 @@ export default function BlogPost({ data, isPreview }) {
         <meta name="description" content={post.frontmatter.descriptionSEO} />
       </Helmet>
       <h1>{post.frontmatter.title}</h1>
-      <ImgContainer
-        fluid={post.frontmatter.image.childImageSharp.fluid}
-        alt={post.frontmatter.title}
-      />
+      {isPreview ? (
+        <img
+          src={
+            post.frontmatter.image.childImageSharp
+              ? post.frontmatter.image.childImageSharp.fluid.src
+              : post.frontmatter.image
+          }
+          alt={post.frontmatter.title}
+        />
+      ) : (
+        <ImgContainer
+          fluid={post.frontmatter.image.childImageSharp.fluid}
+          alt={post.frontmatter.title}
+        />
+      )}
       {isPreview ? (
         post.html
       ) : (
         <div dangerouslySetInnerHTML={{ __html: post.html }} />
       )}
     </Container>
-  )
+  );
 }
 
 export const pageQuery = graphql`
@@ -49,4 +58,20 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;
+
+BlogPost.propTypes = {
+  data: PropTypes.shape({
+    markdownRemark: PropTypes.shape({
+      html: PropTypes.object,
+      frontmatter: PropTypes.shape({
+        titleSEO: PropTypes.string,
+        descriptionSEO: PropTypes.string,
+        title: PropTypes.string,
+        subtitle: PropTypes.string,
+        image: PropTypes.object,
+      }),
+    }),
+  }).isRequired,
+  isPreview: PropTypes.bool.isRequired,
+};

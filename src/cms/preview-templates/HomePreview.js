@@ -1,9 +1,9 @@
-import React from "react"
-import Home from "../../templates/Home"
-import PropTypes from "prop-types"
+import React from 'react';
+import PropTypes from 'prop-types';
+import Home from '../../templates/Home';
 
-function HomePreview({ entry, getAsset }) {
-  const homeData = entry.getIn(["data"]).toJS()
+function HomePreview({ entry }) {
+  const homeData = entry.getIn(['data']).toJS();
   return (
     <Home
       data={{
@@ -18,14 +18,13 @@ function HomePreview({ entry, getAsset }) {
         },
       }}
     />
-  )
+  );
 }
 
 HomePreview.propTypes = {
   entry: PropTypes.shape({
     getIn: PropTypes.func,
-  }),
-  widgetFor: PropTypes.func,
-}
+  }).isRequired,
+};
 
-export default HomePreview
+export default HomePreview;
