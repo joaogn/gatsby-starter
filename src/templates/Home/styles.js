@@ -1,4 +1,11 @@
 import styled from "styled-components"
+import Img from "gatsby-image"
+
+export const ImgContainer = styled(Img)`
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  width: 100%;
+`
 
 export const Container = styled.div`
   height: 100vh;
@@ -59,11 +66,6 @@ export const Container = styled.div`
           flex-direction: column;
           align-items: flex-start;
           justify-content: flex-start;
-          img {
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            width: 100%;
-          }
           p {
             align-self: center;
             margin-top: 5px;

@@ -21,7 +21,18 @@ exports.createPages = ({ actions, graphql }) => {
               image {
                 childImageSharp {
                   fluid(maxWidth: 500, quality: 100) {
+                    aspectRatio
+                    base64
+                    originalImg
+                    originalName
+                    presentationHeight
+                    presentationWidth
+                    sizes
                     src
+                    srcSet
+                    srcSetWebp
+                    srcWebp
+                    tracedSVG
                   }
                 }
               }

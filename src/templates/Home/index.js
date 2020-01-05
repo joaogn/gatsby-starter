@@ -1,6 +1,6 @@
 import React from "react"
 import { Helmet } from "react-helmet"
-import { Container } from "./styles"
+import { Container, ImgContainer } from "./styles"
 import { posts } from "./posts"
 
 export default function HomePage({ data, isPreview }) {
@@ -29,8 +29,8 @@ export default function HomePage({ data, isPreview }) {
             {posts.map(({ node }) => {
               return (
                 <a href={node.fields.slug}>
-                  <img
-                    src={node.frontmatter.image.childImageSharp.fluid.src}
+                  <ImgContainer
+                    fluid={node.frontmatter.image.childImageSharp.fluid}
                     alt={node.frontmatter.title}
                   />
                   <p>{node.frontmatter.title}</p>
@@ -54,7 +54,7 @@ export const pageQuery = graphql`
         subtitle
         image {
           childImageSharp {
-            fluid(maxWidth: 500, quality: 100) {
+            fluid(maxWidth: 500, quality: 50) {
               src
             }
           }

@@ -1,6 +1,6 @@
 import React from "react"
 import { Helmet } from "react-helmet"
-import { Container } from "./styles"
+import { Container, ImgContainer } from "./styles"
 
 export default function BlogPost({ data, isPreview }) {
   let post
@@ -16,8 +16,8 @@ export default function BlogPost({ data, isPreview }) {
         <meta name="description" content={post.frontmatter.descriptionSEO} />
       </Helmet>
       <h1>{post.frontmatter.title}</h1>
-      <img
-        src={post.frontmatter.image.childImageSharp.fluid.src}
+      <ImgContainer
+        fluid={post.frontmatter.image.childImageSharp.fluid}
         alt={post.frontmatter.title}
       />
       {isPreview ? (
@@ -39,7 +39,7 @@ export const pageQuery = graphql`
         image {
           childImageSharp {
             fluid(maxWidth: 500, quality: 100) {
-              src
+              ...GatsbyImageSharpFluid
             }
           }
         }
