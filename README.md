@@ -1,42 +1,61 @@
 <p align="center">
   <a href="https://www.gatsbyjs.org">
-    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
+    <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="150" />
   </a>
 </p>
 
-# Gatsby Starter With Basics Plugins
+# Powerful Gatsby Starter
+
+## Powerful Starter Gatsby with netlifyCMS, SEO, PWA.
 
 ### Instaled Plugins!
 
-- gatsby-plugin-styled-components
-- babel-plugin-styled-components
-- gatsby-image
-- gatsby-plugin-google-analytics
-- gatsby-plugin-manifest
-- gatsby-plugin-nprogress
-- gatsby-plugin-offline
-- gatsby-plugin-page-creator
-- gatsby-plugin-prefetch-google-fonts
 - gatsby-plugin-react-helmet
+- gatsby-source-filesystem
 - gatsby-plugin-sharp
-- gatsby-plugin-sitemap
 - gatsby-transformer-sharp
+- gatsby-transformer-remark
+- gatsby-remark-relative-images
+- gatsby-remark-images
+- gatsby-remark-copy-linked-files
+- gatsby-plugin-nprogress
+- gatsby-plugin-google-analytics
+- gatsby-plugin-prefetch-google-fonts
+- gatsby-plugin-manifest
+- gatsby-plugin-styled-components
+- gatsby-plugin-page-creator
 - gatsby-plugin-netlify-cms
+- gatsby-plugin-sitemap
+- gatsby-plugin-netlify-cache
+- gatsby-plugin-netlify
+- gatsby-plugin-offline
 
 1.  **Start developing.**
 
     ```shell
-    gatsby develop
+    git clone git@github.com:joaogn/gatsby-starter.git coolName
+    cd coolName
+    sudo rm -r .git
+    git init
+    yarn
+    yarn start
     ```
 
-2.  **Build.**
+2.  **Configure NetlifyCMS**
 
     ```shell
-    gatsby build
+    static/admin/config.yml
+    src/cms/cms.js
     ```
 
-3.  **Start Build.**
+3.  **Build.**
 
     ```shell
-    gatsby serve
+    yarn build
+    ```
+
+4.  **Start Build.**
+
+    ```shell
+    yarn serve
     ```

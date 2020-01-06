@@ -1,4 +1,16 @@
-import CMS from "netlify-cms-app"
-import pt from "./pt"
+import CMS from 'netlify-cms-app';
+import pt from './pt';
 
-CMS.registerLocale("pt", pt)
+import BlogPostPreview from './preview-templates/BlogPostPreview';
+import HomePreview from './preview-templates/HomePreview';
+import withStyledComponentsRendered from '../helpers/withStyledComponentsRendered';
+
+CMS.registerPreviewStyle('./PreviewStyle.css');
+
+CMS.registerPreviewTemplate('index', withStyledComponentsRendered(HomePreview));
+CMS.registerPreviewTemplate(
+  'blog',
+  withStyledComponentsRendered(BlogPostPreview),
+);
+
+CMS.registerLocale('pt', pt);

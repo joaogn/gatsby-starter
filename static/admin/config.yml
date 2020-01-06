@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: master
+  branch: dev
   commit_messages:
     create: "Create {{collection}} “{{slug}}”"
     update: "Update {{collection}} “{{slug}}”"
@@ -19,7 +19,33 @@ collections:
     create: true
     slug: "{{day}}-{{month}}-{{year}}-{{slug}}"
     fields:
+      - {
+          label: "Template Key",
+          name: "templateKey",
+          widget: "hidden",
+          default: "BlogPost",
+        }
       - { label: "Título", name: "title", widget: "string" }
+      - { label: "Imagem do Post", name: "image", widget: image }
       - { label: "Data de publicação", name: "date", widget: "datetime" }
-      - { label: "Imagem de Capa", name: "featuredimage", widget: image }
       - { label: "Texto", name: "body", widget: "markdown" }
+      - { label: "Título SEO", name: "titleSEO", widget: "string" }
+      - { label: "Descrição SEO", name: "descriptionSEO", widget: "string" }
+  - name: "pages"
+    label: "Páginas"
+    files:
+      - file: "src/pages/index.md"
+        label: "Home"
+        name: "index"
+        fields:
+          - {
+              label: "Template Key",
+              name: "templateKey",
+              widget: "hidden",
+              default: "Home",
+            }
+          - { label: "Background", name: image, widget: image }
+          - { label: "Título", name: title, widget: string }
+          - { label: "Subtítulo", name: subtitle, widget: string }
+          - { label: "Título SEO", name: titleSEO, widget: string }
+          - { label: "Descrição SEO", name: "descriptionSEO", widget: "string" }

@@ -1,4 +1,4 @@
 export default {
-  background: "#fff",
-  primary: "blue",
-}
+  background: '#fff',
+  primary: 'blue',
+};
