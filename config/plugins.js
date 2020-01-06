@@ -111,6 +111,7 @@ module.exports = [
     },
   },
   'gatsby-plugin-sitemap',
+  'gatsby-plugin-netlify-cache',
   'gatsby-plugin-netlify', // make sure to keep it last in the array
   'gatsby-plugin-offline',
 ];

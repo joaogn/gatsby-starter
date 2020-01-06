@@ -26,6 +26,7 @@
 - gatsby-plugin-page-creator
 - gatsby-plugin-netlify-cms
 - gatsby-plugin-sitemap
+- gatsby-plugin-netlify-cache
 - gatsby-plugin-netlify
 - gatsby-plugin-offline
 
